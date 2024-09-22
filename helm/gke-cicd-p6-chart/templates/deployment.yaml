@@ -1,0 +1,22 @@
+# This is a sample deployment manifest file for a simple web application.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gke-cicd-p6
+  labels:
+    app: gke-cicd-p6
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gke-cicd-p6
+  template:
+    metadata:
+      labels:
+        app: gke-cicd-p6
+    spec:
+      containers:
+      - name: gke-cicd-p6
+        image: laxman926/gke-cicd-p6:{{ .Values.image.tag}}
+        ports:
+        - containerPort: 8080
